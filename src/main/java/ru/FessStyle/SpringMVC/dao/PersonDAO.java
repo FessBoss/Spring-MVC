@@ -1,6 +1,5 @@
 package ru.FessStyle.SpringMVC.dao;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import ru.FessStyle.SpringMVC.models.Person;
 
@@ -34,5 +33,15 @@ public class PersonDAO {
     public void save(Person person) {
         person.setId(++PEOPLE_COUNT);
         people.add(person);
+    }
+
+    public void update(int id, Person updatedPerson) {
+        Person personToBeUpdated = show(id);
+
+        personToBeUpdated.setName(updatedPerson.getName());
+    }
+
+    public void delete(int id) {
+        people.removeIf(person -> person.getId() == id);
     }
 }
